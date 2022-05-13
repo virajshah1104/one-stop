@@ -16,6 +16,26 @@ export class App extends Component{
     reader.readAsDataURL(e.target.files[0])
   }
 
+  componentDidMount(){
+    fetch("https://lit-fjord-92060.herokuapp.com", {
+      "method": "GET",
+      "headers": {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
+        "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token",
+        "content-type": "application/json",
+        "accept": "application/json"
+      }
+    })
+    .then(response => response.json())
+    .then(response => {
+      console.log(response)
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  }
+
 
   render(){
     const {profileImg} = this.state
